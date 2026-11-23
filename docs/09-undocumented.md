@@ -45,10 +45,11 @@ where to look, so you can check it again when the firmware changes.
 
 ## Things that are unclear or that I could not verify
 
-- `JsonListParser` and `XmlListParser` (the streaming parsers) live in the FreeInk
-  SDK, which is not included in this copy. How the `bundle.files` array and XML
-  selectors behave with unusual input (mixed types, several matching `<link>` elements)
-  was inferred from the call sites, not read directly.
+- The streaming parsers live in the FreeInk SDK, which is not included in this copy.
+  `XmlListParser` was read from the SDK's public `main` branch
+  (`libs/network/CatalogList/`), compiled on a computer, and run against the
+  `nested-catalog` example. The firmware pins its own SDK revision, which may differ.
+  `JsonListParser` (how `bundle.files` arrays with mixed types behave) was not checked.
 - Whether plain `http://` URLs work for every request type depends on the SDK's
   `SecureHttpClient`. LAN plugins such as WebDAV rely on it, but test it on your
   device.

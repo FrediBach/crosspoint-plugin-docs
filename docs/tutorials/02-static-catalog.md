@@ -174,6 +174,12 @@ several files (`.ifo`, `.idx`, `.dict.dz`), see the bundle installer in
 row** at the end (for example the next file's first book) so the reader knows a next
 page exists. `page_size` must equal the number of "real" rows per file.
 
+**Folders inside folders.** A JSON catalog stops at two levels (lists, then
+books). For a deeper tree, such as *Fiction → Science Fiction → Classics*, switch
+to static XML files, one per folder. See
+[chapter 4.11a](../04-device-catalogs.md#411a-nested-catalogs-folders-inside-folders)
+and the [`nested-catalog`](../../examples/plugins/nested-catalog/) example.
+
 **No search.** A static file host can't answer queries. For search, you need an
 API, see [Tutorial 3](03-authenticated-catalog.md).
 

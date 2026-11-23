@@ -1,0 +1,24 @@
+{
+  "title": "Nested Catalog Example",
+  "description": "A static book tree with folders inside folders.",
+  "version": "0.1.0",
+  "browse": {
+    "format": "xml",
+    "url": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/library/index.xml",
+    "item": "entry",
+    "container_element": "folder",
+    "resolve_urls": true,
+    "extensions": [".epub", ".xtc", ".txt", ".md"],
+    "fields": {
+      "title": "title",
+      "author": "info",
+      "id": "file",
+      "url": "link@href"
+    }
+  },
+  "download": {
+    "url": "{url}",
+    "dest_dir": "/Books/Nested Catalog",
+    "filename": "{id}"
+  }
+}

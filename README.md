@@ -94,8 +94,8 @@ request bodies or format conversion, do it in the browser.*
 - [Tutorial 7: Your own plugin/asset store (bundle installs)](docs/tutorials/07-bundle-store.md)
 
 ### Start from an example
-- [**examples/**](examples/README.md): nine ready-to-copy plugins (settings page,
-  static catalog, password and QR sign-in catalogs, WebDAV browser, event webhooks,
+- [**examples/**](examples/README.md): ten ready-to-copy plugins (settings page,
+  static catalog, nested folder catalog, password and QR sign-in catalogs, WebDAV browser, event webhooks,
   File Manager tool, job-queue runner, plugin store), plus test servers and scripts
 
 ### Reference

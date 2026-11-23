@@ -1,6 +1,6 @@
 # Example plugins
 
-Nine plugins, each a good starting point for a different kind of CrossPoint
+Ten plugins, each a good starting point for a different kind of CrossPoint
 plugin. Each folder in [`plugins/`](plugins/) is a **complete plugin**. Copy it to
 `/plugins/` on the SD card (or upload it through the web File Manager) and it
 shows up under **Home → Plugins** and on the web **Plugins** page.
@@ -14,6 +14,7 @@ catalog generators, scripts. They are **not** copied to the reader.
 |---|---|---|---|---|
 | [`web-settings`](plugins/web-settings/) | Settings page only | browser | `FIELDS`-driven form → flat `config.json`, `api.relay` test, native styles | none |
 | [`static-catalog`](plugins/static-catalog/) | Catalog, no login | reader | JSON file you host, local paging, lists, Details screen, sidecar | [`make_catalog.py`](companions/static-catalog/make_catalog.py), sample [`all.json`](companions/static-catalog/all.json) |
+| [`nested-catalog`](plugins/nested-catalog/) | Catalog with folders inside folders, no login | reader | static `index.xml` per folder, unlimited depth, relative links, original file names | [`make_nested_catalog.py`](companions/nested-catalog/make_nested_catalog.py) |
 | [`password-catalog`](plugins/password-catalog/) | Catalog with username/password | both | `auth.type: password`, auto re-login on 401, `lists_url`, search, offset paging, download hop, capability check | [`mock_library.py`](companions/password-catalog/mock_library.py) |
 | [`device-code-catalog`](plugins/device-code-catalog/) | Catalog with QR sign-in | both | OAuth device-code flow on the reader **and** in the browser, shared `token.json` | [`mock_device_auth.py`](companions/device-code-catalog/mock_device_auth.py) |
 | [`webdav-browser`](plugins/webdav-browser/) | XML folder browser | both | `format: xml`, PROPFIND, folders, extension filter, Basic auth computed in JS | any WebDAV server |
@@ -73,6 +74,10 @@ python3 examples/companions/bundle-store/build_store.py examples/plugins \
   webhook test delivery, the job-runner download, and the file-tool scan and move.
 - The mock servers were checked with the same requests the reader's
   `device.json` would send.
+- The `nested-catalog` XML was parsed by the SDK's real `XmlListParser` (FreeInk
+  SDK `main` branch), compiled on a computer and configured like the reader
+  configures it. A driver opened every folder from the root and checked that
+  every book link points to an existing file.
 - **Not tested on a real e-reader.** The on-device behavior (catalog screens,
   events, bundle installs) follows the firmware source and the docs in
   [`../docs/`](../docs/), but hasn't been run on hardware. Please report what

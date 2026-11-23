@@ -340,14 +340,64 @@ skipped (and don't count toward pages in a static list).
 "download": { "username": "{cfg.user}", "password": "{cfg.pass}" }  // url defaults to "{url}"
 ```
 
-Selectors:
-- `"elem"`: text of a child element (matched by local name, so namespaces don't matter),
-- `"elem@attr"`: an attribute of a child element (OPDS: `"link@href"`),
+Selectors (matched by local name, so namespace prefixes don't matter):
+- `"elem"`: the leading text of the **first descendant** `<elem>` of the item,
+- `"elem@attr"`: an attribute of the first descendant `<elem>` (OPDS: `"link@href"`,
+  which takes the *first* `<link>`),
 - `"@attr"`: an attribute of the item element itself.
 
-Behavior: Confirm on a folder opens it, and Back goes up. Folders are listed first,
-then files, each sorted A–Z. **No paging, lists or search.** At most 200 entries per
-folder. Split big libraries into subfolders.
+Rules the parser applies (FreeInk SDK `XmlListParser`):
+- A row **without a url is dropped**. A row with an empty title gets the url's last
+  path segment as its title.
+- An item is a **folder** when it contains the `container_element` anywhere inside it.
+  `extensions` filters only files. Folders are always shown.
+- `resolve_urls: true` turns `/path` **and relative** links (`sub/index.xml`) into full
+  URLs, resolved against the folder of the XML being browsed. `..` is not normalised.
+- Items nested inside another item are ignored. Each folder is its own request.
+- Limits: 200 entries, 768 characters per field, about 64 KB of captured field text,
+  and 32 levels of XML element nesting per response.
+
+Behavior: Confirm on a folder fetches its `url` and lists it, and Back goes up
+(any depth). Folders are listed first, then files, each sorted A–Z. You can't
+choose the order. **No paging, lists, search or Details screen.**
+
+## 4.11a Nested catalogs (folders inside folders)
+
+A **JSON** catalog has at most two levels: an optional list picker (`lists`), then
+the rows. Picking a row always downloads (or opens Details). Rows can't be folders,
+and one response has only one `items` array. So nesting in the JSON itself doesn't help.
+
+For deeper trees, use the **XML** format, even for plain static files. Every
+folder is a small XML file whose folder entries link to the next file:
+
+```xml
+<!-- library/index.xml -->
+<catalog>
+  <entry><title>Fiction</title><info>3 books</info><link href="Fiction/index.xml"/><folder/></entry>
+  <entry><title>Cosmos</title><info>Carl Sagan</info><file>Cosmos.epub</file><link href="Cosmos.epub"/></entry>
+</catalog>
+```
+
+```json
+"browse": {
+  "format": "xml",
+  "url": "https://example.com/library/index.xml",
+  "item": "entry", "container_element": "folder", "resolve_urls": true,
+  "fields": { "title": "title", "author": "info", "id": "file", "url": "link@href" }
+},
+"download": { "url": "{url}", "filename": "{id}" }
+```
+
+With relative links, the whole tree can be uploaded to any static host unchanged.
+The [`nested-catalog`](../examples/plugins/nested-catalog/) example includes a
+script that writes one `index.xml` per folder of a local book tree.
+
+| | JSON catalog | XML catalog |
+|---|---|---|
+| Depth | 2 (lists → rows) | unlimited |
+| Paging | yes | no (200 entries per folder) |
+| Search, Details, version badges, bundles | yes | no |
+| Order | as in the file | folders first, then A–Z |
 
 ## 4.12 `token` and `config` files
 

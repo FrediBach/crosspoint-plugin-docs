@@ -1,0 +1,8 @@
+{
+  "name": "nested-catalog",
+  "title": "Nested Catalog Example",
+  "description": "A static book tree with folders inside folders.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "files": ["manifest.json", "device.json", "README.md"]
+}
