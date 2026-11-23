@@ -82,12 +82,15 @@ keep it from running out of memory. Hard caps are enforced, not advisory.
 20. A catalog plugin never shows its README on the device.
 21. Keys containing dots (e.g. `"application/epub+zip"`) can't be addressed by dotted paths.
 22. In catalog rows, compatibility lists are comma-separated **strings**, not arrays.
+23. **`.md` files are shown as plain text**, exactly like `.txt` (`lib/Txt/TxtToHtml.cpp`).
+    Headings, bold, lists and links appear as typed. For formatted text or clickable
+    links, deliver an EPUB: internal EPUB links can be followed, with Back to return.
 
 **Events**
-23. A non-2xx answer blocks that plugin's queue until it succeeds. Answer 2xx for junk you'll never accept.
-24. Handlers without `connect: true` wait for the next Wi-Fi session (or ride along with an opted-in sleep drain).
-25. One handler per event per plugin. Don't repeat an event key in `events`.
-26. Expect duplicates (at-least-once). Dedupe on `{event.id}`.
+24. A non-2xx answer blocks that plugin's queue until it succeeds. Answer 2xx for junk you'll never accept.
+25. Handlers without `connect: true` wait for the next Wi-Fi session (or ride along with an opted-in sleep drain).
+26. One handler per event per plugin. Don't repeat an event key in `events`.
+27. Expect duplicates (at-least-once). Dedupe on `{event.id}`.
 
 ## 7.3 Debugging
 

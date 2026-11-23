@@ -353,6 +353,13 @@ Rules the parser applies (FreeInk SDK `XmlListParser`):
   `extensions` filters only files. Folders are always shown.
 - `resolve_urls: true` turns `/path` **and relative** links (`sub/index.xml`) into full
   URLs, resolved against the folder of the XML being browsed. `..` is not normalised.
+- **Query strings only survive in absolute links.** When a relative or `/path` link
+  is resolved, `?`, `=` and `&` are percent-encoded: `/api/notes?folder=12` becomes
+  `/api/notes%3Ffolder%3D12`. Dynamic servers should either use path-style URLs
+  (`/api/folders/12/index.xml`) or return absolute URLs (`https://host/api/notes?folder=12`).
+- `extensions` checks the end of the URL's **path, including any query string**.
+  `https://host/note?id=7` never matches `.md`. Use a path that ends in the
+  extension (`/notes/7/export.md`), or leave out `extensions`.
 - Items nested inside another item are ignored. Each folder is its own request.
 - Limits: 200 entries, 768 characters per field, about 64 KB of captured field text,
   and 32 levels of XML element nesting per response.
