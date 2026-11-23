@@ -1,0 +1,9 @@
+{
+  "name": "file-tool",
+  "title": "File Tool Example",
+  "description": "Book statistics and duplicate finder on the File Manager page.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "mount": "files",
+  "files": ["manifest.json", "plugin.js", "README.md"]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "WebDAV Browser Example",
+  "description": "Browse folders on a WebDAV server (Nextcloud, NAS, ...).",
+  "version": "0.1.0",
+  "config": { "file": "config.json" },
+  "browse": {
+    "format": "xml",
+    "url": "{cfg.url}",
+    "method": "PROPFIND",
+    "headers": {
+      "Authorization": "Basic {cfg.auth}",
+      "Depth": "1",
+      "Content-Type": "application/xml"
+    },
+    "body": "<?xml version=\"1.0\"?><d:propfind xmlns:d=\"DAV:\"><d:prop><d:resourcetype/><d:displayname/></d:prop></d:propfind>",
+    "item": "response",
+    "container_element": "collection",
+    "skip_self": true,
+    "resolve_urls": true,
+    "extensions": [".epub", ".txt", ".md", ".xtc", ".pdf"],
+    "fields": {
+      "title": "displayname",
+      "url": "href"
+    }
+  },
+  "download": {
+    "username": "{cfg.user}",
+    "password": "{cfg.pass}",
+    "dest_dir": "/WebDAV",
+    "filename": "{title}"
+  }
+}

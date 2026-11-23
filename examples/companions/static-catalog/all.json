@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": "example-one",
+      "title": "Example Book One",
+      "author": "First Author",
+      "summary": "Replace this file with your own list. 'file' must be a direct HTTPS link to the EPUB.",
+      "file": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/books/example-one.epub"
+    },
+    {
+      "id": "example-two",
+      "title": "Example Book Two",
+      "author": "Second Author",
+      "summary": "Rows without a title are skipped. Up to 1 MB of JSON works; the reader pages through it.",
+      "file": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/books/example-two.epub"
+    }
+  ]
+}

@@ -24,6 +24,8 @@ Save as `mock_library.py`. Put a few `.epub` files in a `books/` folder next to 
    Login: reader / secret.  Tokens expire after 120 s to exercise re-minting.
 """
 import json, os, secrets, time, urllib.parse, pathlib
+import sys
+sys.stdout.reconfigure(line_buffering=True)   # print immediately, also when piped
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 USER, PASS = "reader", "secret"

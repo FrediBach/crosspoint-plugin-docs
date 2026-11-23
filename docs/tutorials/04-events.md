@@ -21,6 +21,8 @@ Plus a tiny receiver server that prints what arrives.
    python3 hook_receiver.py   → :8090.  Put a sleep.bmp next to this file.
 """
 import json, pathlib
+import sys
+sys.stdout.reconfigure(line_buffering=True)   # print immediately, also when piped
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 SECRET = "change-me"

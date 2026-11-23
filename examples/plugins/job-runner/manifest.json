@@ -1,0 +1,8 @@
+{
+  "name": "job-runner",
+  "title": "Job Runner Example",
+  "description": "Download URLs to the reader from scripts.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "files": ["manifest.json", "plugin.js", "README.md"]
+}

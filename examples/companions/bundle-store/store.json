@@ -1,0 +1,130 @@
+{
+ "plugins": [
+  {
+   "name": "bundle-store",
+   "title": "Bundle Store Example",
+   "description": "Install and update plugins from your own catalog.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/bundle-store/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "README.md"
+   ]
+  },
+  {
+   "name": "device-code-catalog",
+   "title": "Device Code Catalog Example",
+   "description": "Sign in by scanning a QR code, then browse.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/device-code-catalog/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "plugin.js",
+    "README.md"
+   ]
+  },
+  {
+   "name": "event-webhooks",
+   "title": "Event Webhooks Example",
+   "description": "Sends reading activity to your server.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/event-webhooks/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "plugin.js",
+    "README.md"
+   ]
+  },
+  {
+   "name": "file-tool",
+   "title": "File Tool Example",
+   "description": "Book statistics and duplicate finder on the File Manager page.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/file-tool/",
+   "files": [
+    "manifest.json",
+    "plugin.js",
+    "README.md"
+   ]
+  },
+  {
+   "name": "job-runner",
+   "title": "Job Runner Example",
+   "description": "Download URLs to the reader from scripts.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/job-runner/",
+   "files": [
+    "manifest.json",
+    "plugin.js",
+    "README.md"
+   ]
+  },
+  {
+   "name": "password-catalog",
+   "title": "Password Catalog Example",
+   "description": "Library server with login, shelves and search.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/password-catalog/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "plugin.js",
+    "README.md"
+   ],
+   "compatibility": {
+    "firmware_family": "crosspoint",
+    "plugin_api_min": 1,
+    "requires": "catalog.lists,catalog.list_index_mapping,catalog.encoded_item_fields,catalog.server_paths"
+   }
+  },
+  {
+   "name": "static-catalog",
+   "title": "Static Catalog Example",
+   "description": "Books listed in a JSON file you host yourself.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/static-catalog/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "README.md"
+   ]
+  },
+  {
+   "name": "web-settings",
+   "title": "Web Settings Example",
+   "description": "Template: a settings page that saves config.json.",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/web-settings/",
+   "files": [
+    "manifest.json",
+    "plugin.js",
+    "README.md"
+   ]
+  },
+  {
+   "name": "webdav-browser",
+   "title": "WebDAV Browser Example",
+   "description": "Browse folders on a WebDAV server (Nextcloud, NAS, ...).",
+   "author": "CrossPoint plugin docs",
+   "version": "0.1.0",
+   "base": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/examples/plugins/webdav-browser/",
+   "files": [
+    "manifest.json",
+    "device.json",
+    "plugin.js",
+    "README.md"
+   ]
+  }
+ ]
+}

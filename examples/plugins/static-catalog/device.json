@@ -1,0 +1,32 @@
+{
+  "title": "Static Catalog Example",
+  "description": "Books listed in a JSON file you host yourself.",
+  "version": "0.1.0",
+  "config": { "file": "config.json" },
+  "browse": {
+    "url": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/catalog/all.json",
+    "items": "books",
+    "page_size": 10,
+    "fields": {
+      "title": "title",
+      "author": "author",
+      "id": "id",
+      "url": "file",
+      "description": "summary"
+    },
+    "lists": [
+      { "title": "All books" },
+      { "title": "Science fiction",
+        "url": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/catalog/scifi.json" }
+    ]
+  },
+  "download": {
+    "url": "{url}",
+    "dest_dir": "/Books/Static Catalog",
+    "filename": "{title}.epub",
+    "sidecar": {
+      "path": "{dest}.meta.json",
+      "body": "{\"staticcat_id\":\"{id}\"}"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Device Code Catalog Example",
+  "description": "Sign in by scanning a QR code, then browse.",
+  "version": "0.1.0",
+
+  "config": { "file": "config.json" },
+  "token":  { "file": "token.json", "path": "token" },
+
+  "auth": {
+    "type": "device_code",
+    "request": {
+      "url": "{cfg.server}/device/code",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": "client_id=crosspoint-example"
+    },
+    "poll": {
+      "url": "{cfg.server}/device/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": "grant_type=urn:ietf:params:oauth:grant-type:device_code&client_id=crosspoint-example&device_code={device_code}"
+    },
+    "code_path": "user_code",
+    "verify_url_path": "verification_uri",
+    "device_code_path": "device_code",
+    "interval_path": "interval",
+    "expires_path": "expires_in",
+    "token_path": "access_token",
+    "error_path": "error"
+  },
+
+  "browse": {
+    "url": "{cfg.server}/api/books",
+    "headers": { "Authorization": "Bearer {token}" },
+    "items": "books",
+    "fields": { "title": "title", "id": "id", "url": "url" }
+  },
+
+  "download": {
+    "url": "{url}",
+    "headers": { "Authorization": "Bearer {token}" },
+    "dest_dir": "/Books/Device Code",
+    "filename": "{title}.epub"
+  }
+}

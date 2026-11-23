@@ -1,0 +1,9 @@
+{
+  "name": "web-settings",
+  "title": "Web Settings Example",
+  "description": "Template: a settings page that saves config.json.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "mount": "settings",
+  "files": ["manifest.json", "plugin.js", "README.md"]
+}

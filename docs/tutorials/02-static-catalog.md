@@ -73,7 +73,9 @@ def meta(epub):
         root = ET.fromstring(z.read("META-INF/container.xml"))
         opf_path = root.find(".//c:rootfile", NS).get("full-path")
         opf = ET.fromstring(z.read(opf_path))
-        get = lambda tag: (opf.findtext(f".//dc:{tag}", default="", namespaces=NS) or "").strip()
+        def get(tag):   # itertext: descriptions may contain nested XHTML elements
+            el = opf.find(f".//dc:{tag}", NS)
+            return "".join(el.itertext()).strip() if el is not None else ""
         desc = re.sub(r"<[^>]+>", "", get("description"))[:600]
         return get("title") or epub.stem, get("creator"), desc
 

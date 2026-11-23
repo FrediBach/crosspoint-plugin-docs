@@ -1,0 +1,53 @@
+{
+  "title": "Password Catalog Example",
+  "description": "Library server with login, shelves and search.",
+  "version": "0.1.0",
+
+  "config": { "file": "config.json" },
+  "token":  { "file": "token.json", "path": "token" },
+
+  "auth": {
+    "type": "password",
+    "request": {
+      "url": "{cfg.server}/oauth/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/json" },
+      "body": "{\"username\":\"{cfg.username}\",\"password\":\"{cfg.password}\"}"
+    },
+    "token_path": "access_token"
+  },
+
+  "browse": {
+    "url": "{cfg.server}/api/books?shelf={list_id_enc}&offset={offset}&limit={limit}",
+    "headers": { "Authorization": "Bearer {token}" },
+    "items": "items",
+    "page_size": 8,
+    "fields": {
+      "title": "title",
+      "author": "author",
+      "id": "id",
+      "description": "summary"
+    },
+    "lists": [
+      { "title": "All books", "id": "" }
+    ],
+    "lists_url": "{cfg.server}/api/shelves",
+    "lists_headers": { "Authorization": "Bearer {token}" },
+    "lists_items": "shelves",
+    "lists_fields": { "title": "name", "id": "id" },
+    "search": {
+      "url": "{cfg.server}/api/books?q={query}&offset={offset}&limit={limit}"
+    }
+  },
+
+  "download": {
+    "url": "{cfg.server}/api/books/{id_enc}/download",
+    "method": "POST",
+    "headers": { "Authorization": "Bearer {token}", "Content-Type": "application/json" },
+    "body": "{}",
+    "url_path": "url",
+    "dest_dir": "/Books/Password Catalog",
+    "filename": "{title}.epub",
+    "sidecar": { "path": "{dest}.meta.json", "body": "{\"pwcat_id\":\"{id}\"}" }
+  }
+}

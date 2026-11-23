@@ -1,0 +1,8 @@
+{
+  "name": "event-webhooks",
+  "title": "Event Webhooks Example",
+  "description": "Sends reading activity to your server.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "files": ["manifest.json", "device.json", "plugin.js", "README.md"]
+}

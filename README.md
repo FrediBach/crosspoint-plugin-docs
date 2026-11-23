@@ -93,6 +93,11 @@ request bodies or format conversion, do it in the browser.*
 - [Tutorial 6: Remote control with the job queue](docs/tutorials/06-job-queue.md)
 - [Tutorial 7: Your own plugin/asset store (bundle installs)](docs/tutorials/07-bundle-store.md)
 
+### Start from an example
+- [**examples/**](examples/README.md): nine ready-to-copy plugins (settings page,
+  static catalog, password and QR sign-in catalogs, WebDAV browser, event webhooks,
+  File Manager tool, job-queue runner, plugin store), plus test servers and scripts
+
 ### Reference
 - [Limits, gotchas and debugging](docs/07-limits-and-gotchas.md)
 - [Publishing to Plugin Hub](docs/08-publishing.md)

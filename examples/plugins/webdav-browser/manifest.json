@@ -1,0 +1,8 @@
+{
+  "name": "webdav-browser",
+  "title": "WebDAV Browser Example",
+  "description": "Browse folders on a WebDAV server (Nextcloud, NAS, ...).",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "files": ["manifest.json", "device.json", "plugin.js", "README.md"]
+}

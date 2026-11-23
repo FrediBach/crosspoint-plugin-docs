@@ -1,0 +1,28 @@
+{
+  "title": "Bundle Store Example",
+  "description": "Install and update plugins from your own catalog.",
+  "version": "0.1.0",
+  "browse": {
+    "url": "https://raw.githubusercontent.com/YOU/YOUR-REPO/main/store.json",
+    "items": "plugins",
+    "page_size": 10,
+    "fields": {
+      "title": "title",
+      "author": "description",
+      "detail_author": "author",
+      "id": "name",
+      "version": "version",
+      "description": "description",
+      "repository": "repository"
+    },
+    "compatibility": {
+      "firmware_family": "compatibility.firmware_family",
+      "plugin_api_min": "compatibility.plugin_api_min",
+      "requires": "compatibility.requires"
+    }
+  },
+  "download": {
+    "dest_dir": "/.crosspoint/plugins",
+    "bundle": { "base": "base", "files": "files", "subdir": "{id}" }
+  }
+}

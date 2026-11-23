@@ -1,0 +1,8 @@
+{
+  "name": "device-code-catalog",
+  "title": "Device Code Catalog Example",
+  "description": "Sign in by scanning a QR code, then browse.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "files": ["manifest.json", "device.json", "plugin.js", "README.md"]
+}

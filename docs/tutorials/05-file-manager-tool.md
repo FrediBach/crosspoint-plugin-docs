@@ -37,6 +37,8 @@ only gets a small info card.
 CrossPoint.registerPlugin((container, api) => {
   const $ = (s) => container.querySelector(s);
   const BOOK = /\.(epub|xtc|txt|md|pdf)$/i;
+  // Never scan plugin folders (their README.md files are not books) or our own output.
+  const SKIP_DIRS = ['/plugins', '/Duplicates', '/System Volume Information'];
   const fmt = (b) => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.ceil(b / 1024) + ' KB';
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const form = (o) => new URLSearchParams(o);
@@ -71,8 +73,9 @@ CrossPoint.registerPlugin((container, api) => {
       $('[data-status]').textContent = `Scanning ${dir} … (${books.length} books so far)`;
       for (const e of await listDir(dir)) {
         const path = (dir === '/' ? '' : dir) + '/' + e.name;
+        if (e.name.startsWith('.')) continue;               // hidden files and folders
         if (e.isDirectory) {
-          if (path !== '/Duplicates') queue.push(path);
+          if (!SKIP_DIRS.includes(path)) queue.push(path);
         } else if (BOOK.test(e.name)) {
           books.push({ path, dir, name: e.name, size: e.size });
         }
@@ -81,11 +84,15 @@ CrossPoint.registerPlugin((container, api) => {
     return books;
   }
 
-  // "Dune (1).epub", "dune.epub", "Dune - copy.EPUB" → "dune"
-  const key = (name) => name.toLowerCase()
-    .replace(BOOK, '')
-    .replace(/\s*(\(\d+\)|- ?copy|copy)\s*$/g, '')
-    .replace(/[^a-z0-9]+/g, '');
+  // "Dune (1).epub", "dune.epub", "Dune - copy.EPUB" → "dune.epub".
+  // The extension stays part of the key: Dune.epub and Dune.txt are not duplicates.
+  const key = (name) => {
+    const ext = (name.match(BOOK) || [''])[0].toLowerCase();
+    return name.toLowerCase()
+      .replace(BOOK, '')
+      .replace(/\s*(\(\d+\)|- ?copy|copy)\s*$/g, '')
+      .replace(/[^a-z0-9]+/g, '') + ext;
+  };
 
   function report(books) {
     const byDir = new Map();
@@ -183,6 +190,10 @@ Wi-Fi. Use it on demand for a few files, not for a 500-book scan.
 - Moving an EPUB clears its layout cache, so the book re-paginates the next time it
   is opened. Test what happens to reading progress on your device before you move
   books people are reading.
+- **Skip plugin folders.** Every plugin has a `README.md`, and `.md` is a book
+  format for the reader. A naive scan treats those READMEs as duplicate "books"
+  and moves them out of the plugins. The code above skips `/plugins`, and
+  dot-folders (`/.crosspoint/plugins`, `/.plugins`) are skipped as hidden.
 - Dot-folders are hidden from `/api/files` unless "show hidden files" is on.
   Skip them anyway.
 - Don't parallelise requests with `Promise.all`. The reader serves one request at a time.

@@ -1,0 +1,13 @@
+{
+  "name": "password-catalog",
+  "title": "Password Catalog Example",
+  "description": "Library server with login, shelves and search.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "compatibility": {
+    "firmware_family": ["crosspoint"],
+    "plugin_api_min": 1,
+    "requires": ["catalog.lists", "catalog.list_index_mapping", "catalog.encoded_item_fields", "catalog.server_paths"]
+  },
+  "files": ["manifest.json", "device.json", "plugin.js", "README.md"]
+}
