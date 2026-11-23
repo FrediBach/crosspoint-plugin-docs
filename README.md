@@ -102,3 +102,4 @@ request bodies or format conversion, do it in the browser.*
 - [Limits, gotchas and debugging](docs/07-limits-and-gotchas.md)
 - [Publishing to Plugin Hub](docs/08-publishing.md)
 - [What the official docs leave out](docs/09-undocumented.md): features and behavior found only in the source, with file references
+- [Docs server and reader plugin](SERVER.md): browse this guide on the e-reader itself

@@ -1,0 +1,13 @@
+{
+  "name": "crosspoint-plugin-docs-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Serves the CrossPoint plugin docs as a nested on-device catalog and a small website.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/*.test.js"
+  }
+}
