@@ -1,0 +1,3 @@
+data/
+games/*
+!games/games.json

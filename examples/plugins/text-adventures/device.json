@@ -1,0 +1,25 @@
+{
+  "title": "Text Adventures",
+  "description": "Play Z-machine games from your own server. Experimental.",
+  "config": { "file": "config.json" },
+  "browse": {
+    "url": "{cfg.server}/s/{cfg.session}/view?game={list_id_enc}",
+    "items": "rows",
+    "page_size": 8,
+    "fields": {
+      "title": "title",
+      "author": "sub",
+      "id": "id",
+      "detail_author": "none",
+      "details_url": "details",
+      "details_format": "fmt"
+    },
+    "lists_url": "{cfg.server}/games",
+    "search": { "url": "{cfg.server}/s/{cfg.session}/cmd?q={query}" }
+  },
+  "download": {
+    "url": "{cfg.server}/s/{cfg.session}/transcript.txt",
+    "dest_dir": "/Books/Text Adventures",
+    "filename": "Transcript.txt"
+  }
+}

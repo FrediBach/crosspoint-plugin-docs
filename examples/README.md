@@ -1,6 +1,6 @@
 # Example plugins
 
-Ten plugins, each a good starting point for a different kind of CrossPoint
+Eleven plugins, each a good starting point for a different kind of CrossPoint
 plugin. Each folder in [`plugins/`](plugins/) is a **complete plugin**. Copy it to
 `/plugins/` on the SD card (or upload it through the web File Manager) and it
 shows up under **Home → Plugins** and on the web **Plugins** page.
@@ -22,6 +22,7 @@ catalog generators, scripts. They are **not** copied to the reader.
 | [`file-tool`](plugins/file-tool/) | File Manager tool | browser | `mount: files`, `/api/files`, `/mkdir`, `/move`, safe scanning | none |
 | [`job-runner`](plugins/job-runner/) | Remote-controlled action | browser | `api.registerAction`, `fetchToSd`, sidecar from JS | [`send-to-reader.sh`](companions/job-runner/send-to-reader.sh) |
 | [`bundle-store`](plugins/bundle-store/) | Plugin/asset store | reader | multi-file `bundle` installs, version badges, compatibility filter | [`build_store.py`](companions/bundle-store/build_store.py), generated [`store.json`](companions/bundle-store/store.json) |
+| [`text-adventures`](plugins/text-adventures/) | Interactive app on the catalog screen (**experimental**) | both | a game loop out of catalog parts: Search as a command line, `details_url` HTML pages that run commands, dynamic `lists_url`, `{cfg.*}`, Fetch for a transcript | [`server.js`](companions/text-adventures/server.js) with a small Z-machine interpreter, [`zmachine.js`](companions/text-adventures/zmachine.js) |
 
 "Runs on": **reader** = `device.json` only, **browser** = `plugin.js` only,
 **both** = a web setup page plus an on-device catalog sharing `config.json`/`token.json`.
@@ -38,7 +39,7 @@ catalog generators, scripts. They are **not** copied to the reader.
 
 ## Trying the server examples locally
 
-All test servers use only the Python standard library (3.9+).
+The test servers use only the Python standard library (3.9+), except `text-adventures`, which is plain Node 22+ (no packages).
 
 ```sh
 # password-catalog: login reader / secret, put some .epub files in ./books
@@ -49,6 +50,11 @@ cd examples/companions/device-code-catalog && python3 mock_device_auth.py       
 
 # event-webhooks: use the same secret on the plugin's web page; put a sleep.bmp next to it
 cd examples/companions/event-webhooks && HOOK_SECRET=s3cret python3 hook_receiver.py      # :8090
+```
+
+```sh
+# text-adventures: downloads four freeware games from the IF Archive, then serves them
+cd examples/companions/text-adventures && ./fetch-games.sh && node server.js                # :8095
 ```
 
 On the plugin's web page, enter `http://<your computer's LAN IP>:<port>`.
@@ -78,6 +84,10 @@ python3 examples/companions/bundle-store/build_store.py examples/plugins \
   SDK `main` branch), compiled on a computer and configured like the reader
   configures it. A driver opened every folder from the root and checked that
   every book link points to an existing file.
+- The `text-adventures` interpreter passes the CZECH conformance suite (406/406) and
+  Praxix (everything except multi-level undo, which it doesn't offer). The server
+  was played with curl through the same URLs `device.json` builds, with
+  Adventure, Lost Pig, 9:05 and Shade.
 - **Not tested on a real e-reader.** The on-device behavior (catalog screens,
   events, bundle installs) follows the firmware source and the docs in
   [`../docs/`](../docs/), but hasn't been run on hardware. Please report what

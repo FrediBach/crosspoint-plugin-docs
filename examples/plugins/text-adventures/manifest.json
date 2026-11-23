@@ -1,0 +1,13 @@
+{
+  "name": "text-adventures",
+  "title": "Text Adventures",
+  "description": "Play Z-machine games from your own server. Experimental.",
+  "author": "CrossPoint plugin docs",
+  "version": "0.1.0",
+  "compatibility": {
+    "firmware_family": ["crosspoint"],
+    "plugin_api_min": 1,
+    "requires": ["catalog.lists", "catalog.list_index_mapping", "catalog.item_details", "catalog.server_paths"]
+  },
+  "files": ["manifest.json", "device.json", "plugin.js", "README.md"]
+}
